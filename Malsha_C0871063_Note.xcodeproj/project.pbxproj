@@ -13,6 +13,10 @@
 		2CF07253290DC2B60078D32C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CF07251290DC2B60078D32C /* Main.storyboard */; };
 		2CF07255290DC2B70078D32C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CF07254290DC2B70078D32C /* Assets.xcassets */; };
 		2CF07258290DC2B70078D32C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CF07256290DC2B70078D32C /* LaunchScreen.storyboard */; };
+		2CF07260290DC9710078D32C /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0725F290DC9710078D32C /* NoteListViewController.swift */; };
+		2CF07262290DCA0E0078D32C /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF07261290DCA0E0078D32C /* AddNoteViewController.swift */; };
+		2CF07264290DCA580078D32C /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF07263290DCA580078D32C /* Note.swift */; };
+		2CF07266290DCD600078D32C /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF07265290DCD600078D32C /* Folder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		2CF07254290DC2B70078D32C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CF07257290DC2B70078D32C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2CF07259290DC2B70078D32C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CF0725F290DC9710078D32C /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
+		2CF07261290DCA0E0078D32C /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
+		2CF07263290DCA580078D32C /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		2CF07265290DCD600078D32C /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +71,10 @@
 				2CF07254290DC2B70078D32C /* Assets.xcassets */,
 				2CF07256290DC2B70078D32C /* LaunchScreen.storyboard */,
 				2CF07259290DC2B70078D32C /* Info.plist */,
+				2CF0725F290DC9710078D32C /* NoteListViewController.swift */,
+				2CF07261290DCA0E0078D32C /* AddNoteViewController.swift */,
+				2CF07263290DCA580078D32C /* Note.swift */,
+				2CF07265290DCD600078D32C /* Folder.swift */,
 			);
 			path = Malsha_C0871063_Note;
 			sourceTree = "<group>";
@@ -138,9 +150,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF07260290DC9710078D32C /* NoteListViewController.swift in Sources */,
 				2CF07250290DC2B60078D32C /* FolderListViewController.swift in Sources */,
 				2CF0724C290DC2B60078D32C /* AppDelegate.swift in Sources */,
+				2CF07262290DCA0E0078D32C /* AddNoteViewController.swift in Sources */,
 				2CF0724E290DC2B60078D32C /* SceneDelegate.swift in Sources */,
+				2CF07264290DCA580078D32C /* Note.swift in Sources */,
+				2CF07266290DCD600078D32C /* Folder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

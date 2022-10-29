@@ -12,8 +12,8 @@ class FolderListViewController: UIViewController , UITableViewDelegate, UITableV
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var folderListTableView: UITableView!
     
-    var folderList : [String] = []
-    var selectedfolder : String?
+    var folderList : [Folder] = []
+    var selectedfolder : Folder?
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -28,14 +28,22 @@ class FolderListViewController: UIViewController , UITableViewDelegate, UITableV
         cancelAction.setValue(UIColor.orange, forKey: "titleTextColor")
         let submitAction = UIAlertAction(title: "Add Item", style: .default) { [unowned alert] _ in
             if let answer = alert.textFields![0].text {
-                self.folderList.append(answer)
+                if answer != ""{
+                    let folder = Folder(name: answer, noteCount: 0)
+                    self.folderList.append(folder)
+                }else{
+                    let alert = UIAlertController(title: "Error", message: "Folder name cannot be empty", preferredStyle: .alert)
+                    let cancelAction = UIAlertAction(title: "Ok", style: .cancel)
+                    alert.addAction(cancelAction)
+                    self.present(alert, animated: true)
+                }
                 self.folderListTableView.reloadData()
             }
         }
         submitAction.setValue(UIColor.black, forKey: "titleTextColor")
         alert.addAction(submitAction)
         alert.addAction(cancelAction)
-        present(alert, animated: true)
+        self.present(alert, animated: true)
     }
     @IBAction func editfolderList(_ sender: UIBarButtonItem) {
         if folderListTableView.isEditing {
@@ -55,22 +63,21 @@ class FolderListViewController: UIViewController , UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FoldertCell",
                                                         for: indexPath) as! FoldertCell
-        cell.name?.text = self.folderList[indexPath.row]
+        cell.name?.text = self.folderList[indexPath.row].name
+        cell.count?.text = String(self.folderList[indexPath.row].noteCount)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-  
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let noteListView = storyboard.instantiateViewController(withIdentifier: "NoteListViewController") as! NoteListViewController
+        noteListView.selectedFolder = self.folderList[indexPath.row]
+        noteListView.delegate = self
+        navigationController?.pushViewController(noteListView, animated: true)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
        return true
-//        if folderListTableView.isEditing
-//        {
-//            return true
-//        }else{
-//            return false
-//        }
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -90,10 +97,18 @@ class FolderListViewController: UIViewController , UITableViewDelegate, UITableV
         folderList.insert(movedObject, at: destinationIndexPath.row)
     }
     
+    func updateFolderList(with folder : Folder){
+        if let row = self.folderList.firstIndex(where: {$0.folderId == folder.folderId}) {
+            self.folderList[row] = folder
+  
+        }
+        folderListTableView.reloadData()
+    }    
 }
 
 class FoldertCell: UITableViewCell {
     @IBOutlet var name : UILabel?
     @IBOutlet var icon : UIImageView?
+    @IBOutlet var count : UILabel?
 }
 
