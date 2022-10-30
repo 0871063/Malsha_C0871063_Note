@@ -11,16 +11,16 @@
         <!--Folders-->
         <scene sceneID="kx8-eK-EvS">
             <objects>
-                <viewController id="ijM-91-2rd" customClass="FolderListViewController" customModule="Malsha_C0871063_Note_P1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ijM-91-2rd" customClass="FolderListViewController" customModule="Malsha_C0871063_Note" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1WN-JZ-GjG">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YhI-iH-agF">
-                                <rect key="frame" x="0.0" y="91" width="390" height="670"/>
+                                <rect key="frame" x="0.0" y="143" width="390" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FoldertCell" rowHeight="58" id="wWm-QB-d96" customClass="FoldertCell" customModule="Malsha_C0871063_Note_P1" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FoldertCell" rowHeight="58" id="wWm-QB-d96" customClass="FoldertCell" customModule="Malsha_C0871063_Note" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="390" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wWm-QB-d96" id="hUC-wr-Pf1">
@@ -76,7 +76,7 @@
                                 </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2k-4f-ez2">
-                                <rect key="frame" x="0.0" y="761" width="390" height="49"/>
+                                <rect key="frame" x="0.0" y="766" width="390" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="L3w-8X-ygg"/>
                                     <barButtonItem image="folder.badge.plus" catalog="system" id="n68-kx-3e4">
@@ -148,15 +148,43 @@
                                 <rect key="frame" x="0.0" y="143" width="390" height="618"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="NoteCell" id="BFJ-hf-WgM">
-                                        <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteCell" rowHeight="65" id="BFJ-hf-WgM" customClass="NoteCell" customModule="Malsha_C0871063_Note" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="390" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BFJ-hf-WgM" id="JLq-h8-IgQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="346" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynn-ae-otY">
+                                                    <rect key="frame" x="30" y="22" width="310" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6O2-TB-WoU">
+                                                    <rect key="frame" x="350" y="20" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="Rcd-6c-orc"/>
+                                                        <constraint firstAttribute="width" constant="25" id="jMN-aZ-UKS"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" backgroundImage="info"/>
+                                                </button>
+                                            </subviews>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="ynn-ae-otY" firstAttribute="centerY" secondItem="JLq-h8-IgQ" secondAttribute="centerY" id="0eB-02-b1l"/>
+                                                <constraint firstItem="6O2-TB-WoU" firstAttribute="centerY" secondItem="JLq-h8-IgQ" secondAttribute="centerY" id="7Zu-Eg-FnO"/>
+                                                <constraint firstItem="ynn-ae-otY" firstAttribute="leading" secondItem="JLq-h8-IgQ" secondAttribute="leadingMargin" constant="10" id="ShH-pO-N21"/>
+                                                <constraint firstItem="6O2-TB-WoU" firstAttribute="trailing" secondItem="JLq-h8-IgQ" secondAttribute="trailingMargin" constant="5" id="YJ9-PK-wxw"/>
+                                                <constraint firstItem="6O2-TB-WoU" firstAttribute="leading" secondItem="ynn-ae-otY" secondAttribute="trailing" constant="10" id="dum-V3-5en"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="infoButton" destination="6O2-TB-WoU" id="0MR-3q-nrD"/>
+                                            <outlet property="note" destination="ynn-ae-otY" id="5SW-vq-4wW"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -172,9 +200,15 @@
                                 <items>
                                     <barButtonItem image="trash" catalog="system" id="Tsz-Qe-jiA">
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="deleteNotes:" destination="XPW-zW-5Ro" id="Ncd-zI-0I5"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem image="tray.and.arrow.down" catalog="system" id="vmA-6n-awJ">
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="moveNotes:" destination="XPW-zW-5Ro" id="W1o-88-Q8r"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="qMw-YU-pmd"/>
                                     <barButtonItem image="pencil.and.ellipsis.rectangle" catalog="system" id="UlQ-7b-7zn">
@@ -282,6 +316,7 @@
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="folder" catalog="system" width="128" height="96"/>
         <image name="folder.badge.plus" catalog="system" width="128" height="92"/>
+        <image name="info" width="860" height="899"/>
         <image name="pencil.and.ellipsis.rectangle" catalog="system" width="128" height="80"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <image name="tray.and.arrow.down" catalog="system" width="128" height="111"/>
