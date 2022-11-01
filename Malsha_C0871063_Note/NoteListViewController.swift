@@ -21,12 +21,12 @@ class NoteListViewController: UIViewController , UITableViewDelegate, UITableVie
     var selectedNote : Note?
     var selectedFolder : Folder?
     var selectedNoteList : [Note] = []
+    var folderList : [Folder] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         moveNoteButton.isEnabled = false
         deleteNoteButton.isEnabled = false
-        
         if let folder = selectedFolder {
             noteList = folder.noteList
         }
@@ -56,6 +56,23 @@ class NoteListViewController: UIViewController , UITableViewDelegate, UITableVie
                 noteList.append(note)
             }
         }
+        if selectedFolder != nil {
+            selectedFolder?.noteCount = noteList.count
+            selectedFolder?.noteList = noteList
+            
+            if let row = self.folderList.firstIndex(where: {$0.folderId == selectedFolder?.folderId}) {
+                self.folderList[row] = selectedFolder!
+      
+            }
+        }
+        
+        noteTableView.reloadData()
+    }
+    
+    func updateFolder(folder : Folder, folderList : [Folder]){
+        self.folderList = folderList
+        self.selectedFolder = folder
+        self.noteList = folder.noteList
         noteTableView.reloadData()
     }
     
@@ -63,6 +80,13 @@ class NoteListViewController: UIViewController , UITableViewDelegate, UITableVie
         if let nextViewController = segue.destination as? AddNoteViewController {
             nextViewController.delegate = self
             nextViewController.selectedFolder = self.selectedFolder
+        }
+        
+        if let folderListController = segue.destination as? MoveToFolderViewController {
+            folderListController.delegate = self
+            folderListController.selectedFolder = self.selectedFolder
+            folderListController.originalFolderList = self.folderList
+            folderListController.selectedNoteList = self.selectedNoteList
         }
     }
     
@@ -75,7 +99,7 @@ class NoteListViewController: UIViewController , UITableViewDelegate, UITableVie
                                                  for: indexPath) as! NoteCell
         let note = self.noteList[indexPath.row]
         cell.note?.text = note.note
-        
+        cell.infoButton?.tag = indexPath.row
         if selectedNoteList.contains(where: {$0.noteId == note.noteId}) {
             cell.infoButton?.setBackgroundImage( UIImage(named: "tick"), for: .normal)
         }else{
@@ -87,10 +111,7 @@ class NoteListViewController: UIViewController , UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let cell = tableView.cellForRow(at: indexPath) as! NoteCell
-        
-        let note = self.noteList[indexPath.row]
+       let note = self.noteList[indexPath.row]
         if let row = self.selectedNoteList.firstIndex(where: {$0.noteId == note.noteId}) {
             self.selectedNoteList.remove(at: row)
         } else {
@@ -103,8 +124,13 @@ class NoteListViewController: UIViewController , UITableViewDelegate, UITableVie
         if selectedFolder != nil {
             selectedFolder?.noteCount = noteList.count
             selectedFolder?.noteList = noteList
+            
+            if let row = self.folderList.firstIndex(where: {$0.folderId == selectedFolder?.folderId}) {
+                self.folderList[row] = selectedFolder!
+      
+            }
         }
-        delegate?.updateFolderList(with: selectedFolder!)
+        delegate?.updateFolderList(with: self.folderList)
     }
     
     @objc func infoButtonPressed(sender: UIButton) {
@@ -118,14 +144,46 @@ class NoteListViewController: UIViewController , UITableViewDelegate, UITableVie
     }
     
     @IBAction func deleteNotes(_ sender: UIBarButtonItem) {
-        let selectedIDs = selectedNoteList.map(\.noteId)
-        noteList = noteList.filter { !selectedIDs.contains($0.noteId) }
-        selectedNoteList.removeAll()
-        noteTableView.reloadData()
+        if selectedNoteList.count > 0 {
+            for note in selectedNoteList {
+                noteList.removeAll(where: {$0.noteId == note.noteId})
+               
+            }
+            selectedFolder?.noteList = noteList
+            if let row = self.folderList.firstIndex(where: {$0.folderId == selectedFolder?.folderId}) {
+                self.folderList[row].noteList = noteList
+                self.folderList[row].noteCount = self.folderList[row].noteList.count
+            }
+            selectedNoteList.removeAll()
+            noteTableView.reloadData()
+        }else{
+            showAlert()
+        }
     }
     
     @IBAction func moveNotes(_ sender: UIBarButtonItem) {
+        if selectedNoteList.count > 0 {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let folderListController = storyboard.instantiateViewController(withIdentifier: "MoveToFolderViewController") as! MoveToFolderViewController
+            folderListController.delegate = self
+            folderListController.selectedFolder = self.selectedFolder
+            folderListController.originalFolderList = self.folderList
+            folderListController.selectedNoteList = self.selectedNoteList
+            present(folderListController, animated: true)
+//            navigationController?.pushViewController(addNoteView, animated: true)
+        }else{
+            showAlert()
+        }
         selectedNoteList.removeAll()
+    }
+    
+    private func showAlert(){
+        
+        let alert = UIAlertController(title:"Error" , message:"Please select notes to continue" , preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel)
+        alert.addAction(action)
+        present(alert, animated: true)
+        
     }
 }
 

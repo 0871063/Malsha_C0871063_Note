@@ -9,6 +9,7 @@ import Foundation
 
 var incrementID = 0
 struct Note {
+    
     var note : String
     var noteId : Int
     var folderId : Int

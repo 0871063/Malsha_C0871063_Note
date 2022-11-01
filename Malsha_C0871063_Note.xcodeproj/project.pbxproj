@@ -17,6 +17,7 @@
 		2CF07262290DCA0E0078D32C /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF07261290DCA0E0078D32C /* AddNoteViewController.swift */; };
 		2CF07264290DCA580078D32C /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF07263290DCA580078D32C /* Note.swift */; };
 		2CF07266290DCD600078D32C /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF07265290DCD600078D32C /* Folder.swift */; };
+		2CF5A699290F241800837B82 /* MoveToFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5A698290F241700837B82 /* MoveToFolderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		2CF07261290DCA0E0078D32C /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
 		2CF07263290DCA580078D32C /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		2CF07265290DCD600078D32C /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		2CF5A698290F241700837B82 /* MoveToFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToFolderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				2CF07261290DCA0E0078D32C /* AddNoteViewController.swift */,
 				2CF07263290DCA580078D32C /* Note.swift */,
 				2CF07265290DCD600078D32C /* Folder.swift */,
+				2CF5A698290F241700837B82 /* MoveToFolderViewController.swift */,
 			);
 			path = Malsha_C0871063_Note;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF5A699290F241800837B82 /* MoveToFolderViewController.swift in Sources */,
 				2CF07260290DC9710078D32C /* NoteListViewController.swift in Sources */,
 				2CF07250290DC2B60078D32C /* FolderListViewController.swift in Sources */,
 				2CF0724C290DC2B60078D32C /* AppDelegate.swift in Sources */,

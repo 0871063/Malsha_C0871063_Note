@@ -29,13 +29,14 @@ class FolderListViewController: UIViewController , UITableViewDelegate, UITableV
         let submitAction = UIAlertAction(title: "Add Item", style: .default) { [unowned alert] _ in
             if let answer = alert.textFields![0].text {
                 if answer != ""{
-                    let folder = Folder(name: answer, noteCount: 0)
-                    self.folderList.append(folder)
+                    if self.folderAlreadyExist(folderName: answer) {
+                        self.showAlert(title: "Name Taken", actionTitle: "OK", message: "Please choose a different name", preferredStyle: .alert)
+                    }else{
+                        let folder = Folder(name: answer, noteCount: 0)
+                        self.folderList.append(folder)
+                    }
                 }else{
-                    let alert = UIAlertController(title: "Error", message: "Folder name cannot be empty", preferredStyle: .alert)
-                    let cancelAction = UIAlertAction(title: "Ok", style: .cancel)
-                    alert.addAction(cancelAction)
-                    self.present(alert, animated: true)
+                    self.showAlert(title: "Error", actionTitle: "OK", message: "Folder name cannot be empty", preferredStyle: .alert)
                 }
                 self.folderListTableView.reloadData()
             }
@@ -73,6 +74,7 @@ class FolderListViewController: UIViewController , UITableViewDelegate, UITableV
         let noteListView = storyboard.instantiateViewController(withIdentifier: "NoteListViewController") as! NoteListViewController
         noteListView.selectedFolder = self.folderList[indexPath.row]
         noteListView.delegate = self
+        noteListView.folderList = self.folderList
         navigationController?.pushViewController(noteListView, animated: true)
     }
     
@@ -97,13 +99,28 @@ class FolderListViewController: UIViewController , UITableViewDelegate, UITableV
         folderList.insert(movedObject, at: destinationIndexPath.row)
     }
     
-    func updateFolderList(with folder : Folder){
-        if let row = self.folderList.firstIndex(where: {$0.folderId == folder.folderId}) {
-            self.folderList[row] = folder
-  
-        }
+    func updateFolderList(with folderList : [Folder]){
+        self.folderList = folderList        
         folderListTableView.reloadData()
-    }    
+    }
+    
+    private func folderAlreadyExist(folderName : String) -> Bool {
+        if self.folderList.contains(where: {$0.name == folderName})
+        {
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    private func showAlert(title : String, actionTitle : String, message : String, preferredStyle : UIAlertController.Style){
+        
+        let alert = UIAlertController(title:title , message:message , preferredStyle: preferredStyle)
+        let action = UIAlertAction(title: actionTitle, style: .cancel)
+        alert.addAction(action)
+        present(alert, animated: true)
+        
+    }
 }
 
 class FoldertCell: UITableViewCell {
